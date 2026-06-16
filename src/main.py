@@ -1,3 +1,4 @@
+import json
 import logging
 from loaders.pdf_loader import load_pdf
 from processing.chunking import create_chunks
@@ -40,12 +41,15 @@ def main():
     rag_retriever = RAGRetriever(vector_store, embedding_manager)
 
     # 6. Execute simple query on the RAG pipeline
-    query = "Tell me about The Assignment: AI Live Chat Agent "
+    print("\n" + "=" * 21 + " QUESTION " + "=" * 21)
+    query = input("Your question: ") # e.g. Tell me about Machine Learning
+    print("=" * 52 + "\n")
     # logger.info(f"Running query: '{query}'")
-    answer = RAG_output(query, rag_retriever, 0.0, True)
+    answer = RAG_output(query, rag_retriever, min_score=0.1, return_context=True)
     
     print("\n" + "=" * 20 + " RAG ANSWER " + "=" * 20)
-    print(answer)
+    # print(answer) ## prints normal python dictionary
+    print(json.dumps(answer, indent=4)) ## prints in JSON format
     print("=" * 52 + "\n")
 
 if __name__ == "__main__":

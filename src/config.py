@@ -21,8 +21,8 @@ EMBEDDING_MODEL_NAME = "all-MiniLM-L6-v2"
 CHROMA_COLLECTION_NAME = "pdf_documents"
 
 # Chunking settings
-CHUNK_SIZE = 1000
-CHUNK_OVERLAP = 200
+CHUNK_SIZE = 400
+CHUNK_OVERLAP = 50
 
 # Retrieval settings
 RETRIEVAL_TOP_K = 3

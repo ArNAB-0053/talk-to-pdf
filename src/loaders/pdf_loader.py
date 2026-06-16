@@ -1,3 +1,4 @@
+from pathlib import Path
 import logging
 import config
 from langchain_community.document_loaders import DirectoryLoader, PyMuPDFLoader
@@ -24,5 +25,17 @@ def load_pdf(data_dir=None):
 
     documents = pdf_loader.load()
     # logger.info(f"Successfully loaded {len(documents)} document pages/sections.")
+
+    for doc in documents:
+        source_path = doc.metadata.get("source", "")
+        doc.metadata["source_path"] = source_path
+        doc.metadata["source_file"] = Path(source_path).name
+
+        if "page" not in doc.metadata:
+            doc.metadata["page"] = -1
+        
+        doc.metadata["page_number"] =  doc.metadata["page"] + 1
+
+        # logger.debug(f"Document metadata: {doc.metadata}")
     
     return documents

@@ -65,6 +65,12 @@ class RAGRetriever:
                     # Convert distance to similarity score (ChromaDB uses cosine distance)
                     similarity_score = 1 - distance
 
+                    # logger.info(
+                    #     f"Rank={i+1} "
+                    #     f"Distance={distance:.4f} "
+                    #     f"Similarity={similarity_score:.4f}"
+                    # )
+
                     if similarity_score >= score_threshold:
                         retrieved_docs.append({
                             'id': doc_id,
@@ -154,8 +160,9 @@ class RAGPipeline:
         context = "\n\n".join([doc['content'] for doc in results]) if results else ""
 
         sources = [{
-            'source': doc['metadata'].get('source_file', doc['metadata'].get('source', 'unknown')),
-            'page': doc['metadata'].get('page', 'unknown'),
+            'source_file': doc['metadata'].get('source_file', 'unknown'),
+            'source_path': doc['metadata'].get('source_path', 'unknown'),
+            'page_number': doc['metadata'].get('page_number', 'unknown'),
             'score': doc['similarity_score'],
             'preview': doc['content'][:300] + '...'
         } for doc in results]
@@ -180,7 +187,7 @@ class RAGPipeline:
         
         if return_context:
             output['context'] = context
-            
+
         return output
 
 
