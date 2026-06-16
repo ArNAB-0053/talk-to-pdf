@@ -4,7 +4,7 @@ from typing import List
 from sentence_transformers import SentenceTransformer
 import config
 
-logger = logging.getLogger(__name__)
+# logger = logging.getLogger(__name__)
 
 class EmbeddingManager:
     def __init__(self, model_name: str = None):

@@ -3,7 +3,7 @@ import logging
 import config
 from langchain_community.document_loaders import DirectoryLoader, PyMuPDFLoader
 
-logger = logging.getLogger(__name__)
+# logger = logging.getLogger(__name__)
 
 def load_pdf(data_dir=None):
     """

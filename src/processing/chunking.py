@@ -2,7 +2,7 @@ import logging
 import config
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 
-logger = logging.getLogger(__name__)
+# logger = logging.getLogger(__name__)
 
 def create_chunks(documents, chunk_size=None, chunk_overlap=None):
     """

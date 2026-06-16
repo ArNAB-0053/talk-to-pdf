@@ -26,3 +26,8 @@ CHUNK_OVERLAP = 50
 
 # Retrieval settings
 RETRIEVAL_TOP_K = 3
+
+# Cache settings
+CACHE_DIR = BASE_DIR / ".cache"
+INDEX_STATE_FILE = CACHE_DIR / "index_state.json"
+

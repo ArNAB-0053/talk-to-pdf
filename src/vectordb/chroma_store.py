@@ -28,6 +28,12 @@ class ChromaStore:
             try:
                 os.makedirs(self.persist_directory, exist_ok=True)
                 self._client = chromadb.PersistentClient(self.persist_directory)
+            except Exception as e:
+                # logger.error(f"Error initializing Chroma store: {e}")
+                raise
+
+        if self._collection is None:
+            try:
                 self._collection = self._client.get_or_create_collection(
                     name=self.collection_name,
                     metadata={"description": "Web documents embedded for RAG"}
@@ -35,8 +41,9 @@ class ChromaStore:
                 # logger.info("ChromaDB client and collection initialized successfully.")
                 # logger.info(f"Collection: {self.collection_name}, Count: {self._collection.count()}")
             except Exception as e:
-                # logger.error(f"Error initializing Chroma store: {e}")
+                # logger.error(f"Error initializing collection: {e}")
                 raise
+
 
     @property
     def client(self):
@@ -92,3 +99,18 @@ class ChromaStore:
         except Exception as e:
             # logger.error(f"Error adding documents: {e}")
             raise
+
+    def reset_store(self):
+        """
+        Completely deletes the Chroma collection to prepare for a clean rebuild.
+        Setting self._collection to None ensures it is cleanly re-created on next usage.
+        """
+        self.initialize_store()
+        try:
+            logger.info(f"Deleting Chroma collection: {self.collection_name} to clear stale index...")
+            self._client.delete_collection(self.collection_name)
+            logger.info("Chroma collection deleted successfully.")
+        except Exception as e:
+            logger.warning(f"Could not delete Chroma collection '{self.collection_name}': {e}")
+        self._collection = None
+
