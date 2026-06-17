@@ -1,4 +1,12 @@
-# talk-to-pdf
+<div align="center">
+   <img width="705" height="142" alt="ascii-art-text (1)" src="https://github.com/user-attachments/assets/b153df10-333b-497f-ba93-b0b97a90fddf" />
+
+   <p align="center">
+  📄 CLI PDF Q&A • 🔍 RAG • 🗄️ ChromaDB • 🧠 Sentence Transformers • 🤖 OpenRouter
+</p>
+</div>
+
+## Overview
 
 Talk-to-PDF is a CLI-based question answering application that allows you to query documents locally. This project was built to learn the fundamentals of Retrieval-Augmented Generation (RAG) by combining document loading, text splitting, embeddings, vector databases, and LLM orchestration. It is meant purely as a personal educational tool and experimentation playground.
 
