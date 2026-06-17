@@ -1,9 +1,5 @@
 <div align="center">
    <img width="705" height="142" alt="ascii-art-text (1)" src="https://github.com/user-attachments/assets/b153df10-333b-497f-ba93-b0b97a90fddf" />
-
-   <p align="center">
-  📄 CLI PDF Q&A • 🔍 RAG • 🗄️ ChromaDB • 🧠 Sentence Transformers • 🤖 OpenRouter
-</p>
 </div>
 
 ## Overview
